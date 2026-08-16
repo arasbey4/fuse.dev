@@ -1,260 +1,83 @@
 # FUSE.DEV
 
-<p align="center">
-  <b>The AI-Native Development Environment</b>
-</p>
-
-<p align="center">
-  Build. Think. Ship.
-</p>
-
-<p align="center">
-  An open-source development environment where AI agents, code, tools, and automation work together in one intelligent workspace.
-</p>
-
----
-
-## Overview
-
-FUSE.DEV is an AI-native development environment designed to change how software is built.
-
-Modern developers use many different tools:
-
-- Code editors
-- Terminals
-- Git
-- Docker
-- Database tools
-- Browser tools
-- AI assistants
-- Deployment platforms
-
-These tools are powerful, but the workflow is fragmented.
-
-FUSE.DEV combines these experiences into one intelligent workspace where developers can write code, manage projects, use AI agents, debug applications, and ship software.
-
-The goal is not to replace developers.
-
-The goal is to create a powerful AI partner that helps developers build software faster, safer, and smarter.
-
----
-
-## Why FUSE.DEV?
-
-Software development is becoming more complex.
-
-Developers spend too much time switching between tools instead of creating.
-
-FUSE.DEV combines:
-Code Editor
-+
-AI Agents
-+
-Terminal
-+
-Git
-+
-Docker
-+
-Database Tools
-+
-Automation
-
-into one complete development environment.
-
----
-
-## AI Agent System
-
-The core of FUSE.DEV is the AI Agent system.
-
-Unlike traditional AI assistants that only answer questions, FUSE agents can understand projects and help complete real engineering tasks.
-
-Example:
-Developer:
-
-"Add authentication to this project."
-
-
-
-FUSE can: ✓ Analyze project structure
-✓ Understand existing code
-✓ Create a development plan
-✓ Modify files
-✓ Run tests
-✓ Prepare Git changes
-
-Developers always stay in control with a permission-based system.
-
----
-
-## Features
-
-### AI-Powered Development
-
-- Project understanding
-- AI code editing
-- Task planning
-- Debugging assistance
-- Automated workflows
-
-### Integrated Workspace
-
-- Modern code editor
-- File explorer
-- Integrated terminal
-- Git management
-- Developer tools
-
-### Security System
-
-AI agents are powerful, but they need control.
-
-Example:
-Read files Allowed
-
-Modify code Allowed
-
-Run tests Allowed
-
-Install packages Approval required
-
-Delete files Blocked
-
-System commands Blocked 
-
----
-
-## Supported AI Models
-
-FUSE.DEV supports multiple AI providers:
-
-- OpenAI
-- Gemini
-- Anthropic
-- Ollama
-- Local AI models
-- OpenAI-compatible APIs
-
-Developers can choose the best model for their workflow.
-
----
-
-## Architecture
-             FUSE.DEV
-
-                |
-
-      Desktop Application
-
-                |
-
-    -----------------------
-
-    User Interface
-
-    FUSE Core
-
-    AI Runtime
-
-    Tool System
-
-    Memory System
-
-    Plugin System
-
-    -----------------------
-
-                |
-
-    Git
-    Docker
-    Databases
-    AI Models
-    
----
-
-## Technology Stack
-
-### Frontend
-
-- React
-- TypeScript
-- Tailwind CSS
-- Monaco Editor
-
-### Desktop
+Build. Think. Ship.
+
+FUSE.DEV is an open-source AI-native desktop development environment. It is built around a secure Electron shell, a React workbench, Monaco editing, real filesystem access through controlled services, integrated terminal sessions, Git inspection, provider-neutral AI chat, and an extensible agent/tool foundation.
+
+## Current Status
+
+Implemented:
+
+- Electron + React + TypeScript desktop shell
+- Secure preload bridge with typed IPC
+- Project opening through the native folder picker
+- Workspace-scoped filesystem service
+- Project explorer with real directory and file operations
+- Monaco editor tabs with save support and dirty indicators
+- Integrated terminal backed by real child processes
+- Git status, branch, log, and diff services
+- Settings persistence for non-secret preferences
+- Session-only AI secret handling
+- OpenAI-compatible streaming provider foundation
+- Tool registry, permission engine, command classifier, and agent state machine foundation
+- Core tests for path validation, command security, permissions, and agent transitions
+
+Planned:
+
+- Full agentic code editing workflow with reviewable diffs
+- Durable OS keychain secret storage
+- Language server integration
+- MCP, Docker, database, browser automation, and plugin runtime execution
+- Electron end-to-end test suite
+
+## Technology
 
 - Electron
+- React
+- TypeScript
+- Vite / electron-vite
+- Monaco Editor
+- xterm.js
+- npm workspaces
+- Vitest
 
-### Core
+## Development
 
-- Node.js
-- Rust components
+```bash
+npm install
+npm run dev
+```
 
-### Infrastructure
+Useful commands:
 
-- Git
-- Docker
-- SQLite
-- PostgreSQL
-- MCP
+```bash
+npm run build
+npm run typecheck
+npm run lint
+npm run test
+npm run format:check
+```
 
----
+## Architecture
 
-## Roadmap
+Renderer code has no direct Node.js access. Privileged operations flow through:
 
-### FUSE v0.1
+```text
+Renderer -> Preload -> Typed IPC -> Main process services -> Filesystem / Process / Git / AI / Tools
+```
 
-- [ ] Desktop application
-- [ ] Code editor
-- [ ] File explorer
-- [ ] Terminal
-- [ ] Git integration
-- [ ] AI assistant
-- [ ] AI code editing
-- [ ] Basic AI agent
-- [ ] Permission system
+See [docs/architecture.md](docs/architecture.md) for the complete architecture.
 
-### FUSE v0.2
+## Security
 
-- [ ] Project memory
-- [ ] MCP support
-- [ ] Advanced AI agents
-- [ ] Local AI models
+FUSE treats AI output, repository content, plugin requests, and IPC payloads as untrusted input. Filesystem paths are workspace-scoped, commands are classified before execution, and agent tools pass through permission checks.
 
-### FUSE v1.0
+See [docs/security.md](docs/security.md).
 
-- [ ] Plugin marketplace
-- [ ] Team collaboration
-- [ ] Cloud workspace
-- [ ] Multi-agent development
+## Contributing
 
----
-
-## Open Source
-
-FUSE.DEV is built as an open-source project.
-
-Developers can:
-
-- Contribute code
-- Create plugins
-- Add integrations
-- Improve documentation
-
-The goal is to create a community-driven AI development platform.
-
----
-
-## Vision
-
-FUSE.DEV is not just another code editor.
-
-It is a complete AI-powered workspace where developers and intelligent systems work together to create software.
-
----
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT License
+MIT
