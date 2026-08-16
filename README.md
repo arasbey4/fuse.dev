@@ -1,3 +1,40 @@
+## ⚠️ IMPORTANT: TEST FILES
+
+> **Please read this before attempting to run the project.**
+
+The files currently added to this repository are **TEST FILES and DEVELOPMENT FILES**.
+
+They are **NOT the final working files of FUSE.DEV**.
+
+The project is still under active development, and there are still many files, systems, components, and dependencies that will be added to the repository.
+
+### Do NOT try to run the current files as a complete application.
+
+The current files may:
+
+- Not run independently
+- Be incomplete
+- Depend on files that have not been uploaded yet
+- Contain experimental implementations
+- Be missing required dependencies
+- Be missing required configuration
+- Change or be replaced during development
+
+This is expected.
+
+The repository is currently being built step by step.
+
+```text
+Current Repository
+
+✓ Test files
+✓ Experimental files
+✓ Development files
+✓ Early implementations
+
+✗ Complete application
+✗ Final release
+✗ Production-ready build
 # FUSE.DEV
 
 Build. Think. Ship.
